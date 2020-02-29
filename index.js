@@ -1,29 +1,31 @@
 console.log("Before");
-// getUser(1, (user)=> {
-//     console.log(user);
-//     getRepo(user.GitHub, (repos)=>{
-//         getCommits(repo, (commits)=>{
-//             //CallBack hell or christmas tree problem
-//         })
-//     })
-// });
+getUser(1, (user)=> {
+    console.log(user);
+    getRepo(user.GitHub, (repos)=>{
+        getCommits(repos[0], (commits)=>{
+            console.log(commits)
+        })
+    })
+});
 
-getUser(1, getRepo1);
+//Named function rescue
 
-console.log("After");
+// getUser(1, getRepo1);
 
-function getRepo1(user){
-    console.log("User ",user)
-    getRepo(user.GitHub, getCommits)
-} 
+// console.log("After");
 
-function getCommits(repos){
-    getCommits(repos, displayCommits)
-}
+// function getRepo1(user){
+//     console.log("User ",user)
+//     getRepo(user.GitHub, getCommits)
+// } 
 
-function displayCommits(commits){
-    console.log(commits)
-}
+// function getCommits(repos){
+//     getCommits(repos, displayCommits)
+// }
+
+// function displayCommits(commits){
+//     console.log(commits)
+// }
 
 function getUser(id, callback){
     setTimeout(()=>{
@@ -37,4 +39,11 @@ function getRepo(username, cb){
         console.log("calling github Api "+cb);
         cb(["repo1","repo2","repo3"]);
     }, 2000);     
+}
+
+function getCommits(repo, callback){
+    setTimeout(()=>{
+        console.log('Calling Github Api...');
+        callback(['commit'])
+    })
 }
