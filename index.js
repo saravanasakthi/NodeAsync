@@ -7,6 +7,7 @@ getUser(1, (user)=> {
         })
     })
 });
+console.log("After");
 
 //Named function rescue
 
@@ -45,5 +46,5 @@ function getCommits(repo, callback){
     setTimeout(()=>{
         console.log('Calling Github Api...');
         callback(['commit'])
-    })
+    }, 2000)
 }
